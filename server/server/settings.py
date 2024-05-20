@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import dj_database_url
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = 'django-insecure-trv9ei+jq39ds_@kpuj95sknj8)14s%1vuxzb8x%d-06ezwj5k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG","False").lower() == "true"
+DEBUG = True
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -83,15 +82,25 @@ WSGI_APPLICATION = 'server.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER':'postgres.psxukvyzdiixpjbpcjcz',
+        'PASSWORD':'Upendra@101128',
+        'HOST':'aws-0-us-east-1.pooler.supabase.com',
+        'PORT':'5432'
     }
 }
 
-database_url=os.environ.get("DATABASE_URL")
-DATABASES['default']=dj_database_url.parse(database_url)
+# DATABASES['default']=dj_database_url.parse("postgres://xircls_db_user:uOJ7dwiP8l9dP1RW6XkMJxCC5jgFvmYm@dpg-cp5gcnn79t8c73etqda0-a/xircls_db")
 
 
 # Password validation
